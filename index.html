@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <link rel="stylesheet" href="index.css"/>
+      <!-- bootstrap css import  -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+      <!-- end import -->
+      <title>STEFANY CRISTINE REPETCKI</title>
+      <meta charset="utf-8">
+      <script>
+         // colocando mascara no campo de numeros
+         $('#phone-number').mask('(00) 00000-0000');
+      </script>
+   </head>
+   <body>
+      <div class="container">
+         <div id="row">
+            <div class="banner"></div>
+            <div class="form">
+               <p class="title">Create an Account!</p>
+               <form id="formulario">
+                  <div class="form-row">
+                     <div class="col">
+                        <input required type="text" class="form-control" placeholder="First name" id="nome" pattern="[a-zA-Z\s]+$">
+                     </div>
+                     <div class="col">
+                        <input required type="text" class="form-control item" id="phone-number" placeholder="Phone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" >
+                     </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="col">
+                        <input required type="email" class="form-control" id="email" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="form-inline row">
+                        <div class="form-group col-md-6">
+                           <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+                           <div class="help-block"></div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                           <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Repeat Password" required>
+                           <div class="help-block with-errors"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <button id="botI" type="submit" class="btn btn-primary btn-lg btn-block">Registrer Account</button>
+                  <button id="botG" type="submit" class="btn btn-primary btn-lg btn-block"><img src="images/google.png">Registrer with Google</button>
+                  <button id="botF" type="submit" class="btn btn-primary btn-lg btn-block"><img src="images/facebook.png">Registrer with Facebook</button>
+               </form>
+               <a href="Password">Forgot Password?</a><br>
+               <a href="login">Already have an account? Login!</a>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script>
+    // recebendo somente letras no nome
+    $("#nome").keypress(function(event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) return true;
+        return false;
+    });
+
+    // alert formulario e verificando as senhas
+    $("#formulario").submit(function() {
+        if ($('#nome').val() != "" && $('#phone-number').val() != "" && $('#email').val() != "" && $('#inputPassword').val() != "" && $('#inputPasswordConfirm').val() != "" && $('#inputPassword').val() == $('#inputPasswordConfirm').val()) {
+            var msg = 'Successfully registered data!\r\n';
+            msg += 'Nome: ' + $('#nome').val() + '\r\n';
+            msg += 'Phone: ' + $('#phone-number').val() + '\r\n';
+            msg += 'Email: ' + $('#email').val() + '\r\n';
+            msg += 'Password: ' + $('#inputPassword').val() + '\r\n';
+            alert(msg);
+        }
+    });
+
+    var password = document.getElementById("inputPassword"),
+        confirm_password = document.getElementById("inputPasswordConfirm");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+   </script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
